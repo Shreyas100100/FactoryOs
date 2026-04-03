@@ -2,6 +2,7 @@ package com.FactoryOS.auth;
 
 import com.FactoryOS.common.response.ApiResponse;
 import com.FactoryOS.dto.AuthResponse;
+import com.FactoryOS.dto.LoginRequest;
 import com.FactoryOS.dto.RegisterRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,4 +28,12 @@ public class AuthController {
                 .body(ApiResponse.ok(response));
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse<AuthResponse>> login(
+            @RequestBody @Valid LoginRequest request) {
+
+        AuthResponse response = authService.login(request);
+        return ResponseEntity
+                .ok(ApiResponse.ok(response));
+    }
 }
