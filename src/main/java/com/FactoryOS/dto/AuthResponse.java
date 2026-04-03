@@ -11,4 +11,5 @@ public class AuthResponse {
     private UUID userId;
     private UUID orgId;
     private String role;
+    private String token;
 }

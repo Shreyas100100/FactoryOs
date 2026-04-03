@@ -18,6 +18,10 @@ spring:
 server:
   port: 8081
 
+jwt:
+  secret: ${JWT_SECRET:mysecretkeymysecretkeymysecretkeymysecretkey}
+  expiry-ms: 86400000
+
 management:
   endpoints:
     web:

@@ -17,6 +17,7 @@ public class AuthService {
 
     private final UserService userService;
     private final OrganizationService organizationService;
+    private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
 
     public AuthResponse register(RegisterRequest request) {
@@ -28,8 +29,10 @@ public class AuthService {
         }
         Organization org = organizationService.create(request);
         User user = userService.createOwner(request, org);
+        String token = jwtUtil.generateToken(user);
 
         return AuthResponse.builder()
+                .token(token)
                 .userId(user.getId())
                 .orgId(org.getId())
                 .role(user.getRole().name())
